@@ -37,21 +37,21 @@ jobs:
           - laravel: 11.*
             testbench: 9.*
           - laravel: dev-master
-            testbench: dev-main
+            testbench: 11.*
             php: 8.4
             os: ubuntu-latest
             stability: prefer-stable
           - laravel: dev-13.x
-            testbench: dev-main
+            testbench: 11.*
             php: 8.4
             os: ubuntu-latest
             stability: prefer-stable
           - laravel: dev-master
-            testbench: dev-main
+            testbench: 11.*
             php: 8.4
             os: ubuntu-latest
             stability: prefer-stable
-            skeleton: dev-main
+            skeleton: dev-master
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }}${{ matrix.skeleton && format(' + SK:{0}', matrix.skeleton) || '' }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
