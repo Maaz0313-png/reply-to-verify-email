@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace MaazAzeemi\ReplyToVerify\Commands;
 
 use Illuminate\Console\Command;
 
