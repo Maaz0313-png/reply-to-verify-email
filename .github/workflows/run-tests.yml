@@ -36,8 +36,26 @@ jobs:
             testbench: 10.*
           - laravel: 11.*
             testbench: 9.*
+          - laravel: dev-master
+            testbench: 11.*
+            php: 8.4
+            os: ubuntu-latest
+            stability: prefer-stable
+          - laravel: 13.x-dev
+            testbench: 11.*
+            php: 8.4
+            os: ubuntu-latest
+            stability: prefer-stable
+          - laravel: dev-master
+            testbench: 11.*
+            php: 8.4
+            os: ubuntu-latest
+            stability: prefer-stable
+            skeleton: dev-master
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: P${{ matrix.php }} - L${{ matrix.laravel }}${{ matrix.skeleton && format(' + SK:{0}', matrix.skeleton) || '' }} - ${{ matrix.stability }} - ${{ matrix.os }}
+
+    continue-on-error: ${{ matrix.laravel == 'dev-master' || matrix.laravel == '13.x-dev' }}
 
     steps:
       - name: Checkout code
@@ -57,7 +75,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}"${{ matrix.skeleton && format(' "laravel/laravel:{0}"', matrix.skeleton) || '' }} --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
