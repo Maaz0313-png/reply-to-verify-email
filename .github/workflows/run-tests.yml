@@ -36,8 +36,15 @@ jobs:
             testbench: 10.*
           - laravel: 11.*
             testbench: 9.*
+          - laravel: dev-master
+            testbench: dev-main
+            php: 8.4
+            os: ubuntu-latest
+            stability: prefer-stable
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+
+    continue-on-error: ${{ matrix.laravel == 'dev-master' }}
 
     steps:
       - name: Checkout code
