@@ -41,7 +41,7 @@ jobs:
             php: 8.4
             os: ubuntu-latest
             stability: prefer-stable
-          - laravel: dev-13.x
+          - laravel: 13.x-dev
             testbench: 11.*
             php: 8.4
             os: ubuntu-latest
@@ -55,7 +55,7 @@ jobs:
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }}${{ matrix.skeleton && format(' + SK:{0}', matrix.skeleton) || '' }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
-    continue-on-error: ${{ matrix.laravel == 'dev-master' || matrix.laravel == 'dev-13.x' }}
+    continue-on-error: ${{ matrix.laravel == 'dev-master' || matrix.laravel == '13.x-dev' }}
 
     steps:
       - name: Checkout code
